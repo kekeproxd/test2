@@ -1,0 +1,32 @@
+if game.PlaceId == 2051725963 then
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+ --main 
+ local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+-- gui 
+local HomeTab = Window:MakeTab({
+	Name = "Home",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+HomeTab:AddToggle({
+	Name = "AutoAtk",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoAtk = Value
+        AutoAtk()
+        
+	end    
+})
+-- Valor
+_G.AutoAtk = true 
+
+--funçao
+function  AutoAtk ()
+ while _G.AutoAtk == true do
+    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Training"):WaitForChild("Combat"):InvokeServer()
+	 wait (0.1)
+	 end
+end
